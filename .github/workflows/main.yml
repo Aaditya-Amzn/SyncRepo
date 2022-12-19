@@ -23,8 +23,14 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-2
 
-      - name: Sync up to CodeCommit
-        uses: tsgit18/sync-up-to-codecommit-action@v1.0.6
+      - name: Github to CodeCommit Sync
+        uses: Aaditya-Amzn/github-to-codecommit-sync@v1
         with:
           repository_name: bridge-repo
           aws_region: us-west-2
+          source_branch: mainline
+          destination_branch: mainline
+          folders_to_copy: folder1 folder2
+          github_after: ${{ github.event.after }}
+          github_before: ${{ github.event.before }}
+
